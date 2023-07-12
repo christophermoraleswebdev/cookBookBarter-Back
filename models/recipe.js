@@ -23,7 +23,7 @@ const recipeSchema = new Schema({
             type: Number 
       },
       difficultyLevel: { 
-            type: String 
+            type: Number 
       },
       author: { 
             type: mongoose.Schema.Types.ObjectId, 

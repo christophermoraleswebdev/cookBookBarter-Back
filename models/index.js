@@ -1,5 +1,4 @@
-mongoose = require('mongoose')
-const { default: mongoose } = require('mongoose')
+const mongoose = require('mongoose')
 const userSchema = require('./user')
 const recipeSchema = require('./recipe')
 const categorySchema = require('./category')
