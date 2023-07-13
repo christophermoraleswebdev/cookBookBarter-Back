@@ -42,6 +42,22 @@ const getAllRatings = async (req, res) => {
             res.status(500).json({ error: 'Failed to retrieve ratings' })
       }
 }
+// Get Rating By ID
+const getRatingById = async (req, res) => {
+      try {
+            const { id } = req.params
+      
+            const rating = await Rating.findById(id).populate('user recipe')
+            if (!rating) {
+            return res.status(404).json({ error: 'Rating not found' })
+            }
+    
+        res.status(200).json(rating)
+      } catch (error) {
+            console.error('Error retrieving rating:', error)
+            res.status(500).json({ error: 'Failed to retrieve rating' })
+      }
+}
 
 // UPDATE
 // Update Rating By ID
@@ -84,6 +100,7 @@ const deleteRating = async (req, res) => {
 module.exports = {
       createRating, 
       getAllRatings,
+      getRatingById,
       updateRatingById,
       deleteRating,
 }
