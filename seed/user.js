@@ -4,43 +4,88 @@ const { User } = require('../models')
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 
 const main = async () => {
-
+      
       const user = [
-            {
-              username: 'john_doe',
-              email: 'john.doe@example.com',
-              password: 'password123',
-              profilePicture: 'https://example.com/profiles/john_doe.jpg',
-              favorites: []
-            },
-            {
-              username: 'jane_smith',
-              email: 'jane.smith@example.com',
-              password: 'securepass456',
-              profilePicture: 'https://example.com/profiles/jane_smith.jpg',
-              favorites: []
-            },
-            {
-              username: 'user123',
-              email: 'user123@example.com',
-              password: 'secret789',
-              profilePicture: 'https://example.com/profiles/user123.jpg',
-              favorites: []
-            },
-            {
-              username: 'test_user',
-              email: 'test.user@example.com',
-              password: 'testpass',
-              profilePicture: 'https://example.com/profiles/test_user.jpg',
-              favorites: []
-            },
-            {
-              username: 'webmaster',
-              email: 'webmaster@example.com',
-              password: 'securepassword321',
-              profilePicture: 'https://example.com/profiles/webmaster.jpg',
-              favorites: []
-            }
+        {
+          username: 'sampleuser22',
+          email: 'sampleuser22@example.com',
+          password: 'password1234',
+          firstName: 'Christopher',
+          lastName: 'Morales',
+          profilePicture: 'https://example.com/profile-picture.jpg',
+          favorites: [],
+          __v: 0
+        },
+        {
+          username: 'sampleuser2',
+          email: 'sampleuser2@example.com',
+          password: 'password123',
+          firstName: 'John',
+          lastName: 'Doe',
+          profilePicture: 'https://example.com/profile-picture.jpg',
+          favorites: [],
+          __v: 0
+        },
+        {
+          username: 'sampleuser3',
+          email: 'sampleuser3@example.com',
+          password: 'password123',
+          firstName: 'Jane',
+          lastName: 'Smith',
+          profilePicture: 'https://example.com/profile-picture.jpg',
+          favorites: [],
+          __v: 0
+        },
+        {
+          username: 'sampleuser4',
+          email: 'sampleuser4@example.com',
+          password: 'password123',
+          firstName: 'Carlos',
+          lastName: 'Castaneda',
+          profilePicture: 'https://example.com/profile-picture.jpg',
+          favorites: [],
+          __v: 0
+        },
+        {
+          username: 'sampleuser6',
+          email: 'sampleuser6@example.com',
+          password: 'password123',
+          firstName: 'Miles',
+          lastName: 'Morales',
+          profilePicture: 'https://example.com/profile-picture.jpg',
+          favorites: [],
+          __v: 0
+        },
+        {
+          username: 'sampleuser7',
+          email: 'sampleuser7@example.com',
+          password: 'password123',
+          firstName: 'Cruz',
+          lastName: 'Morales',
+          profilePicture: 'https://example.com/profile-picture.jpg',
+          favorites: [],
+          __v: 0
+        },
+        {
+          username: 'sampleuser8',
+          email: 'sampleuser8@example.com',
+          password: 'password123',
+          firstName: 'Terry',
+          lastName: 'Morales',
+          profilePicture: 'https://example.com/profile-picture.jpg',
+          favorites: [],
+          __v: 0
+        },
+        {
+          username: 'sampleuser9',
+          email: 'sampleuser9@example.com',
+          password: 'password123',
+          firstName: 'Michael',
+          lastName: 'Morales',
+          profilePicture: 'https://example.com/profile-picture.jpg',
+          favorites: [],
+          __v: 0
+        }
       ]
 
       await User.insertMany(user)
