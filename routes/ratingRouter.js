@@ -9,6 +9,7 @@ Router.put('/:id', controller.updateRatingById)
 
 // Get All Ratings
 Router.get('/', controller.getAllRatings)
+
 // Get Rating By ID
 Router.get('/:id', controller.getRatingById)
 
