@@ -18,6 +18,7 @@ const createComment = async (req, res) => {
 const getAllComments = async (req, res) => {
       try {
             const comments = await Comment.find()
+                  .populate('user', 'username')
             res.json(comments)
       } catch (err) {
             res.status(500).json({ error: err.message })
