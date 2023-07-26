@@ -20,7 +20,7 @@ const getAllRecipes = async (req, res) => {
                   .populate('author', 'username')
                   .populate({
                               path: 'comments',
-                              populate: { path: 'user' }
+                              populate: { path: 'user', select:'username' }
                         })
                   .populate('ingredients')
                   .populate('ratings')
