@@ -18,7 +18,7 @@ const getAllRecipes = async (req, res) => {
       try {
             const recipes = await Recipe.find()
                   .populate('author', 'username')
-                  .populate('comments', 'user')
+                  .populate('comments', 'username')
                   .populate('ingredients')
                   .populate('ratings')
             res.json(recipes)
