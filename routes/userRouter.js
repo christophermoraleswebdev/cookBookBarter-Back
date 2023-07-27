@@ -5,7 +5,7 @@ const controller = require('../controllers/userController')
 Router.post('/create', controller.createUser)
 
 // Get User
-Router.get('/', controller.allUsers)
+Router.get('/allUsers', controller.allUsers)
 Router.get('/:id', controller.findUserById)
 
 // Update User
