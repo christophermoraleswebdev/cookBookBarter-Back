@@ -4,7 +4,7 @@ const { User } = require('../models')
 // Create a New User 
 const createUser = async (req, res) => {
       try {
-            const { username, email, password, profilePicture, firstName, lastName } = req.body
+            const { username, email } = req.body
 
             const existingUser = await User.findOne({ $or: [{ username }, { email }] })
 
@@ -12,12 +12,8 @@ const createUser = async (req, res) => {
                   return res.status(400).json({ message: "Username or email already exists" })
             }
 
-            const newUser = new User({
-                  firstName, 
-                  lastName, 
+            const newUser = new User({ 
                   email, 
-                  profilePicture, 
-                  username, 
                   password, 
             })
 
@@ -109,10 +105,57 @@ const deleteUser = async (req, res) => {
       }
 }
 
+// Login 
+const loginController = async (req, res) => {
+      try {
+            const { email, password } = req.body
+      
+            // Check if the user exists 
+            const user = await User.findOne({ email })
+      
+            if (!user || user.password !== password) {
+                  return res.status(401).json({ message: "Invalid email or password" })
+            }
+      
+            // Update the user's signedIn status to true
+            user.signedIn = true
+            await user.save()
+            
+      
+            res.status(200).json({ message: "Login successful" })
+      } catch (err) {
+            console.error(err)
+            res.status(500).json({ message: "Internal server error" })
+      }
+}
+
+// Sign-out 
+const signOutController = async (req, res) => {
+      console.log('working')
+      try {
+    
+            const { email } = req.body
+      
+            const user = await User.findOneAndUpdate({ email: email }, { signedIn: false })
+      
+            if (!user) {
+            return res.status(404).json({ message: 'User not found' })
+            }
+      
+            res.sendStatus(200) 
+      } catch (error) {
+            console.error(error)
+            res.status(500).json({ message: 'Internal server error' })
+      }
+}
+
+
 module.exports = {
       allUsers, 
       findUserById,  
       createUser, 
       updateUser, 
-      deleteUser
+      deleteUser, 
+      loginController, 
+      signOutController
 }

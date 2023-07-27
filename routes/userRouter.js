@@ -5,7 +5,7 @@ const controller = require('../controllers/userController')
 Router.post('/create', controller.createUser)
 
 // Get User
-Router.get('/allUsers', controller.allUsers)
+Router.get('/', controller.allUsers)
 Router.get('/:id', controller.findUserById)
 
 // Update User
@@ -14,7 +14,9 @@ Router.put('/:id', controller.updateUser)
 // Delete User
 Router.delete('/:id', controller.deleteUser)
 
+Router.post('/login', controller.loginController)
 
+Router.post('/logout', controller.signOutController)
 
 
 module.exports = Router 
