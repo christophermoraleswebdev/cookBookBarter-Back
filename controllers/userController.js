@@ -4,7 +4,7 @@ const { User } = require('../models')
 // Create a New User 
 const createUser = async (req, res) => {
       try {
-            const { username, email } = req.body
+            const { username, email, password, firstName, lastName, profilePicture } = req.body
 
             const existingUser = await User.findOne({ $or: [{ username }, { email }] })
 
@@ -13,8 +13,12 @@ const createUser = async (req, res) => {
             }
 
             const newUser = new User({ 
+                  username, 
                   email, 
                   password, 
+                  firstName, 
+                  lastName, 
+                  profilePicture
             })
 
             const savedUser = await newUser.save()
@@ -122,7 +126,7 @@ const loginController = async (req, res) => {
             await user.save()
             
       
-            res.status(200).json({ message: "Login successful" })
+            res.status(200).json(user)
       } catch (err) {
             console.error(err)
             res.status(500).json({ message: "Internal server error" })
