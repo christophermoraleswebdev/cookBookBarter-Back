@@ -64,7 +64,7 @@ const findUserById = async (req, res) => {
 // Update a User
 const updateUser = async (req, res) => {
       try {
-            const { firstName, lastName, email, profilePicture, username, password } = req.body
+            const { firstName, lastName, email, profilePicture, username, password, favorites} = req.body
             const id = req.params.id
             console.log(id)
             const user = await User.findById(id)
@@ -79,6 +79,7 @@ const updateUser = async (req, res) => {
             user.profileicture = profilePicture || user.profilePicture
             user.username = username || user.username
             user.password = password || user.password
+            user.favorites = favorites || user.favorites
             
             const updatedUser = await user.save()
             res.status(200).json({ message: 'User updated successfully', user: updatedUser })
