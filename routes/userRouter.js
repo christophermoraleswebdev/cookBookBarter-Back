@@ -18,5 +18,8 @@ Router.post('/login', controller.loginController)
 
 Router.post('/logout', controller.signOutController)
 
+// Delete Favorite
+Router.delete('/users/:userId/favorites/:favoriteId', controller.removeFavorite)
+
 
 module.exports = Router 

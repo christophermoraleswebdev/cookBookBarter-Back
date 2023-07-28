@@ -110,6 +110,32 @@ const deleteUser = async (req, res) => {
       }
 }
 
+// Delete Favorites
+const removeFavorite = async (req, res) => {
+      const { userId, favoriteId} = req.params
+      
+      try {
+            const user = await User.findById(userId)
+            if (!user) {
+                  return res.status(404).json({ error: 'User not found' })
+            }
+
+            const favoriteIndex = user.favorites.indexOf(favoriteId)
+
+            if (favoriteIndex === -1) {
+                  return res.status(404).json({ error: 'Favorite not found' })
+            }
+
+            user.favorites.splice(favoriteIndex, 1)
+            await user.save()
+
+            return res.status(200).json({ message: 'Favorite removed successfully' })
+      } catch (error) {
+            console.error(error)
+            return res.status(500).json({error: 'Server error'})
+      }
+}
+
 // Login 
 const loginController = async (req, res) => {
       try {
@@ -162,5 +188,6 @@ module.exports = {
       updateUser, 
       deleteUser, 
       loginController, 
-      signOutController
+      signOutController, 
+      removeFavorite,
 }
