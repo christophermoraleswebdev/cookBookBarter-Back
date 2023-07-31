@@ -16,7 +16,7 @@ Router.delete('/:id', controller.deleteUser)
 
 Router.post('/login', controller.loginController)
 
-Router.post('/logout', controller.signOutController)
+Router.post('/logout/:id', controller.signOutController)
 
 // Delete Favorite
 Router.delete('/users/:userId/favorites/:favoriteId', controller.removeFavorite)
