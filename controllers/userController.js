@@ -160,25 +160,23 @@ const loginController = async (req, res) => {
       }
 }
 
-// Sign-out 
+// Sign-out by ID
 const signOutController = async (req, res) => {
-      console.log('working')
       try {
+            const { id } = req.params 
+            const user = await User.findByIdAndUpdate(id, { signedIn: false })
     
-            const { email } = req.body
-      
-            const user = await User.findOneAndUpdate({ email: email }, { signedIn: false })
-      
             if (!user) {
-            return res.status(404).json({ message: 'User not found' })
+                  return res.status(404).json({ message: 'User not found' })
             }
       
-            res.sendStatus(200) 
+        res.sendStatus(200)
       } catch (error) {
             console.error(error)
             res.status(500).json({ message: 'Internal server error' })
       }
 }
+    
 
 
 module.exports = {
