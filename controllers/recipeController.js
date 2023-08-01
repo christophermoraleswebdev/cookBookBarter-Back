@@ -1,40 +1,16 @@
 const { Recipe } = require('../models')
-const { Ingredient } = require('../models')
 
 // CREATE
 // Create a new recipe
 const createRecipe = async (req, res) => {
       try {
-            const { ingredients, ...otherRecipeData } = req.body
-    
-            // If the request contains ingredients data, we create the ingredients first and obtain their _id
-            const ingredientIds = []
-            if (ingredients && ingredients.length > 0) {
-                  for (const ingredientData of ingredients) {
-                        const newIngredient = new Ingredient(ingredientData)
-                        const savedIngredient = await newIngredient.save()
-                        ingredientIds.push(savedIngredient._id)
-                  }
-            }
-    
-            // After creating the ingredients and obtaining their _id, we can add them to the recipe data
-            const recipeData = {
-            ...otherRecipeData,
-            ingredients: ingredientIds,
-            }
-    
-            // Create a new recipe instance
-            const newRecipe = new Recipe(recipeData)
-    
-            // Save the recipe to the database
-            const savedRecipe = await newRecipe.save()
-    
-             res.status(201).json(savedRecipe)
+            const recipe = new Recipe(req.body)
+            const savedRecipe = await recipe.save()
+            res.status(201).json(savedRecipe)
       } catch (error) {
-            console.error('Error creating recipe:', error)
-            res.status(500).json({ error: 'Failed to create recipe' })
+            res.status(400).json({ error: error.message })
       }
-}
+ }
 
 // READ
 // Get all recipes
